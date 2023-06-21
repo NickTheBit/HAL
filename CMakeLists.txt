@@ -5,15 +5,21 @@
 set(HAL_SELECTED_ARCHITECTURE "" CACHE STRING "The selected architecture to be used by the library.")
 
 set(HAL_SOURCES "")
+file(GLOB_RECURSE HAL_SOURCES Interfaces/*.hh)
+
+add_library(HAL STATIC ${HAL_SOURCES})
+set_target_properties(HAL PROPERTIES LINKER_LANGUAGE CXX)
+target_include_directories(HAL PUBLIC Interfaces/)
 
 # TODO: Create dynamic including of sources depending on architecture.
 if(NOT HAL_SELECTED_ARCHITECTURE)
     message(FATAL_ERROR "No HAL architecture was selected.")
 elseif ("${HAL_SELECTED_ARCHITECTURE}" STREQUAL "RP2040")
     message(STATUS "HAL set to RP2040")
-    file(GLOB_RECURSE HAL_SOURCES Architectures/RP2040/*.cpp)
+    add_subdirectory(Architectures/RP2040)
+    target_link_libraries(HAL PUBLIC RP2040_Backend)
+
 endif ()
 
 
-add_library(HAL STATIC ${HAL_SOURCES})
-target_include_directories(HAL PUBLIC Interfaces/)
+
