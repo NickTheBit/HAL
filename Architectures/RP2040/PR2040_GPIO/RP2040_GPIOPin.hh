@@ -5,8 +5,8 @@
  * @date 25/05/2023
  *********************************************/
 
-#include "Interfaces/GPIOPinInterface.hh"
 #include "hardware/gpio.h"
+#include "GPIOPinInterface.hh"
 
 class RP2040_GPIOPin : public HAL::GPIOPinInterface {
   private:

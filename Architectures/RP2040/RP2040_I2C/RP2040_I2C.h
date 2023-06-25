@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include "Interfaces/I2CInterface.hh"
 #include "hardware/i2c.h"
+#include "I2CInterface.hh"
 
 class RP2040_I2C : public I2CInterface {
 private:

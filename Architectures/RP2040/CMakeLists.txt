@@ -8,6 +8,8 @@ file(GLOB_RECURSE RP2040_SOURCES ./*.cpp)
 
 add_library(RP2040_Backend STATIC ${RP2040_SOURCES})
 
+target_include_directories(RP2040_Backend PRIVATE ../../Interfaces)
+
 target_link_libraries(RP2040_Backend LINK_PUBLIC
         pico_stdlib
         hardware_i2c)
