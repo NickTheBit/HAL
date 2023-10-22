@@ -21,7 +21,7 @@ public:
     RP2040_I2C(i2c_inst_t *hardwareInterface, uint8_t SDAPin, uint8_t SCLPin, bool slaveMode, uint32_t baudrateHz);
     ~RP2040_I2C();
     void read(uint8_t address, uint8_t consecutiveBytes, uint8_t *outputArray) override;
-    void write(uint8_t startingAddress, uint8_t *payload, uint16_t payloadSize) override;
+    void write(uint8_t address, uint8_t *payload, uint16_t payloadSize) override;
     uint16_t getBaudrateHz() const;
     bool isSlaveMode() const;
 };

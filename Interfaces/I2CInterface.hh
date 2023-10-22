@@ -12,5 +12,5 @@
 class I2CInterface {
 public:
     virtual void read(uint8_t address, uint8_t consecutiveBytes, uint8_t *outputArray) = 0;
-    virtual void write(uint8_t startingAddress, uint8_t *payload, uint16_t payloadSize) = 0;
+    virtual void write(uint8_t address, uint8_t *payload, uint16_t payloadSize) = 0;
 };
