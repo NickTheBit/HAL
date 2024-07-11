@@ -1,10 +1,18 @@
-/************************
- * @brief
- * @author nick
+/**********************************************
+ * @brief Uard abstraction interface
+ * @author Nikolaos Xenofon Gkloumpos
  * @date   7/11/24
- ************************/
+ **********************************************/
 
-#ifndef PRESSURE_LOGGER_UARTINTERFACE_HH
-#define PRESSURE_LOGGER_UARTINTERFACE_HH
+#pragma once
 
-#endif // PRESSURE_LOGGER_UARTINTERFACE_HH
+#include <string>
+
+namespace HAL {
+
+class UARTInterface {
+	virtual void write(std::string message) = 0;
+	virtual void read() = 0;
+};
+
+} // namespace HAL

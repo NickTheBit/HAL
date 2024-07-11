@@ -6,4 +6,12 @@
 
 #pragma once
 
-class RP2040_UART {};
+#include "UARTInterface.hh"
+
+class RP2040_UART : public HAL::UARTInterface {
+  public:
+	RP2040_UART() = default;
+	~RP2040_UART() = default;
+	void write(std::string message) override;
+	void read() override;
+};
