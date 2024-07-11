@@ -9,15 +9,12 @@
 
 namespace HAL {
 
-typedef enum {
-    HIGH = 1,
-    LOW = 0
-} GPIO_STATE;
+typedef enum { HIGH = 1, LOW = 0 } GPIO_STATE;
 
 class GPIOPinInterface {
   public:
 	virtual void write(GPIO_STATE newState) = 0;
-    virtual GPIO_STATE read() = 0;
+	virtual GPIO_STATE read() = 0;
 };
 
 } // namespace HAL
