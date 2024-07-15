@@ -11,6 +11,7 @@
 namespace HAL {
 
 class UARTInterface {
+  public:
 	virtual void write(std::string message) = 0;
 	virtual void read() = 0;
 };
