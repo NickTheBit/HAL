@@ -9,10 +9,12 @@
 
 #include <cstdint>
 
-class I2CInterface {
+template <typename Arch> class I2CInterface {
   public:
-	virtual void read(uint8_t address, uint8_t consecutiveBytes,
-					  uint8_t *outputArray) = 0;
-	virtual void write(uint8_t address, uint8_t *payload,
-					   uint16_t payloadSize) = 0;
+	void read(uint8_t address, uint8_t consecutiveBytes, uint8_t *outputArray) {
+		static_cast<Arch *>(this)->readImpl(address, consecutiveBytes, outputArray);
+	}
+	void write(uint8_t address, uint8_t *payload, uint16_t payloadSize) {
+		static_cast<Arch *>(this)->writeImpl(address, payload, payloadSize);
+	}
 };

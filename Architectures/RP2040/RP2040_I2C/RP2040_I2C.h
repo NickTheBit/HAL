@@ -9,7 +9,7 @@
 #include "I2CInterface.hh"
 #include "hardware/i2c.h"
 
-class RP2040_I2C : public I2CInterface {
+class RP2040_I2C : public I2CInterface<RP2040_I2C> {
   private:
 	i2c_inst_t *hardwareInterface;
 	uint8_t SCLPin;
@@ -21,10 +21,10 @@ class RP2040_I2C : public I2CInterface {
 	RP2040_I2C(i2c_inst_t *hardwareInterface, uint8_t SDAPin, uint8_t SCLPin,
 			   bool slaveMode, uint32_t baudrateHz);
 	~RP2040_I2C();
-	void read(uint8_t slaveAddress, uint8_t consecutiveBytes,
-			  uint8_t *outputArray) override;
-	void write(uint8_t slaveAddress, uint8_t *payload,
-			   uint16_t payloadSize) override;
+	void readImpl(uint8_t slaveAddress, uint8_t consecutiveBytes,
+			  uint8_t *outputArray);
+	void writeImpl(uint8_t slaveAddress, uint8_t *payload,
+			   uint16_t payloadSize);
 	uint16_t getBaudrateHz() const;
 	bool isSlaveMode() const;
 };

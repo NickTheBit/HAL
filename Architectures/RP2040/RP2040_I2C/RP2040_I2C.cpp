@@ -41,14 +41,14 @@ RP2040_I2C::~RP2040_I2C() {
  * @param consecutiveBytes
  * @return
  */
-void RP2040_I2C::read(uint8_t slaveAddress, uint8_t consecutiveBytes, uint8_t *outputArray) {
+void RP2040_I2C::readImpl(uint8_t slaveAddress, uint8_t consecutiveBytes, uint8_t *outputArray) {
 	if (consecutiveBytes < 1) {
 		return;
 	}
 	i2c_read_blocking(this->hardwareInterface, slaveAddress, outputArray, consecutiveBytes, true);
 }
 
-void RP2040_I2C::write(uint8_t slaveAddress, uint8_t *payload, uint16_t payloadSize) {
+void RP2040_I2C::writeImpl(uint8_t slaveAddress, uint8_t *payload, uint16_t payloadSize) {
 	if (payloadSize < 1) {
 		return;
 	}
