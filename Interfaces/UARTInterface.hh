@@ -10,10 +10,15 @@
 
 namespace HAL {
 
-class UARTInterface {
+template <typename Arch>  class UARTInterface {
   public:
-	virtual void write(std::string message) = 0;
-	virtual void read() = 0;
+	/* todo: An override avoiding the strign library should exist. */
+	void write(std::string message) {
+		static_cast<Arch *>(this)->writeImpl(message);
+	}
+	void read() {
+		static_cast<Arch *>(this)->readImpl();
+	}
 };
 
 } // namespace HAL
