@@ -11,10 +11,14 @@ namespace HAL {
 
 typedef enum { HIGH = 1, LOW = 0 } GPIO_STATE;
 
-class GPIOPinInterface {
+template <typename Arch> class GPIOPinInterface {
   public:
-	virtual void write(GPIO_STATE newState) = 0;
-	virtual GPIO_STATE read() = 0;
+	void write(GPIO_STATE newState) {
+		static_cast<Arch *>(this)->writeImpl(newState);
+	}
+	GPIO_STATE read() {
+		return static_cast<Arch *>(this)->readImpl();
+	}
 };
 
 } // namespace HAL
