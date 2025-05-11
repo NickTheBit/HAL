@@ -7,6 +7,7 @@
 
 #pragma once
 
+/* todo: make a decision regarding hal namespace. */
 namespace HAL {
 
 typedef enum { HIGH = 1, LOW = 0 } GPIO_STATE;
