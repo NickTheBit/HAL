@@ -27,4 +27,5 @@ class RP2040_SPI : public SPIInterface<RP2040_SPI> {
 	~RP2040_SPI() = default;
 	uint8_t writeImpl(const uint8_t *message, uint16_t length);
 	uint8_t readImpl(uint8_t *output_buffer, uint16_t length);
+	uint8_t transferImpl(uint8_t * outgoing_buffer, uint8_t * incomming_buffer, uint16_t length);
 };

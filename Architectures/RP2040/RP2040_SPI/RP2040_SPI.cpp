@@ -40,3 +40,7 @@ uint8_t RP2040_SPI::readImpl(uint8_t *output_buffer, const uint16_t length) {
 uint8_t RP2040_SPI::writeImpl(const uint8_t *message, const uint16_t length) {
 	return spi_write_blocking(hardware_interface, message, length);
 }
+
+uint8_t RP2040_SPI::transferImpl(uint8_t * outgoing_buffer, uint8_t * incomming_buffer, uint16_t length) {
+	return spi_write_read_blocking(hardware_interface, outgoing_buffer , incomming_buffer, length);
+}
