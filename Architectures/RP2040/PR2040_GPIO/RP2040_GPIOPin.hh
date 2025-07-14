@@ -6,7 +6,7 @@
  *********************************************/
 #pragma once
 
-#include "GPIOPinInterface.hh"
+#include "Interfaces/GPIOPinInterface.hh"
 #include "hardware/gpio.h"
 
 class RP2040_GPIOPin : public HAL::GPIOPinInterface<RP2040_GPIOPin>
