@@ -14,7 +14,7 @@ public:
 	uint8_t write(uint8_t * message, uint16_t length) {
 		return static_cast<Arch *>(this)->writeImpl(message, length);
 	}
-	uint8_t read(uint8_t * output_buffer, uint8_t length) {
+	uint8_t read(uint8_t * output_buffer, uint16_t length) {
 		return static_cast<Arch *>(this)->readImpl(output_buffer, length);
 	}
 	uint8_t transfer(uint8_t * outgoing_buffer, uint8_t * incoming_buffer, uint16_t length) {
