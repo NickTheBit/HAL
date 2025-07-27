@@ -11,7 +11,7 @@
 
 class Mock_SPI : public SPIInterface<Mock_SPI> {
   public:
-	Mock_SPI() {}
+	Mock_SPI() = default;
 
 	MOCK_METHOD(uint8_t, writeImpl, (uint8_t *message, uint16_t length), ());
 	MOCK_METHOD(uint8_t, readImpl, (uint8_t *output_buffer, uint16_t length), ());
