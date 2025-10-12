@@ -1,5 +1,5 @@
 /*********************************************
-* @brief   Interface for common functions of
+ * @brief   Interface for common functions of
  *         an SPI bus across architectures
  * @author Nikolaos Xenofon Gkloumpos
  * @date   22/05/2025
@@ -9,15 +9,19 @@
 
 #include <cstdint>
 
-template <typename Arch> class SPIInterface {
-public:
-	uint8_t write(uint8_t * message, uint16_t length) {
+template <typename Arch>
+class SPIInterface {
+  public:
+	uint8_t setMode(uint8_t newCPOL, uint8_t newCPHA) {
+		return static_cast<Arch *>(this)->setModeImpl(newCPOL, newCPHA);
+	}
+	uint8_t write(uint8_t *message, uint16_t length) {
 		return static_cast<Arch *>(this)->writeImpl(message, length);
 	}
-	uint8_t read(uint8_t * output_buffer, uint16_t length) {
+	uint8_t read(uint8_t *output_buffer, uint16_t length) {
 		return static_cast<Arch *>(this)->readImpl(output_buffer, length);
 	}
-	uint8_t transfer(uint8_t * outgoing_buffer, uint8_t * incoming_buffer, uint16_t length) {
+	uint8_t transfer(uint8_t *outgoing_buffer, uint8_t *incoming_buffer, uint16_t length) {
 		return static_cast<Arch *>(this)->transferImpl(outgoing_buffer, incoming_buffer, length);
 	}
 };

@@ -22,6 +22,19 @@ RP2040_SPI::RP2040_SPI(spi_inst_t *hardware, const uint8_t sck_pin, const uint8_
 }
 
 /**
+ * @brief Switches SPI communication mode on runtime.
+ * @param newCPOL SPI mode, available values from 0 - 4
+ * @param newCPHA
+ * @return 0 on success (placeholder).
+ */
+uint8_t RP2040_SPI::setModeImpl(uint8_t newCPOL, uint8_t newCPHA) {
+	cpol = static_cast<spi_cpol_t>(newCPOL);
+	cpha = static_cast<spi_cpha_t>(newCPHA);
+	spi_set_format(hardware_interface, message_size, cpol, cpha, SPI_MSB_FIRST);
+	return 0;
+}
+
+/**
  * @brief Reads data from the SPI bus, transmits zeros where needed to receive.
  * @param output_buffer Buffer to output received data
  * @param length Max length of the expected data
