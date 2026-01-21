@@ -42,23 +42,22 @@ RP2040_I2C::~RP2040_I2C() {
  * @brief Reads multiple bytes starting from the target slaveAddress.
  * @param slaveAddress
  * @param consecutiveBytes
+ * @param nostop
  * @return
  */
-I2CResult RP2040_I2C::readImpl(uint8_t slaveAddress, uint8_t consecutiveBytes, uint8_t *outputArray) {
+I2CResult RP2040_I2C::readImpl(uint8_t slaveAddress, uint8_t consecutiveBytes, uint8_t *outputArray, bool nostop) {
 	if (consecutiveBytes < 1) {
 		return I2CResult::FAILURE;
 	}
-	const auto error = i2c_read_timeout_us(this->hardwareInterface, slaveAddress, outputArray, consecutiveBytes, false,
-										   commandTimeoutUs);
+	const auto error = i2c_read_blocking(this->hardwareInterface, slaveAddress, outputArray, consecutiveBytes, nostop);
 	return convert_to_generic_error(error);
 }
 
-I2CResult RP2040_I2C::writeImpl(uint8_t slaveAddress, uint8_t *payload, uint16_t payloadSize) {
+I2CResult RP2040_I2C::writeImpl(uint8_t slaveAddress, uint8_t *payload, uint16_t payloadSize, bool nostop) {
 	if (payloadSize < 1) {
 		return I2CResult::FAILURE;
 	}
-	const auto error =
-		i2c_write_timeout_us(this->hardwareInterface, slaveAddress, payload, payloadSize, false, commandTimeoutUs);
+	const auto error = i2c_write_blocking(this->hardwareInterface, slaveAddress, payload, payloadSize, nostop);
 	return convert_to_generic_error(error);
 }
 
