@@ -16,9 +16,9 @@
  * @param responseTimeout
  */
 RP2040_I2C::RP2040_I2C(i2c_inst_t *hardwareInterface, const uint8_t SDAPin, const uint8_t SCLPin, const bool slaveMode,
-					   uint32_t baudrateHz, uint16_t timeout)
+					   uint32_t baudrateHz)
 	: hardwareInterface(hardwareInterface), SCLPin(SCLPin), SDAPin(SDAPin), baudrateHz(baudrateHz),
-	  slaveMode(slaveMode), commandTimeoutUs(timeout) {
+	  slaveMode(slaveMode) {
 
 	this->baudrateHz = i2c_init(this->hardwareInterface, this->baudrateHz);
 
